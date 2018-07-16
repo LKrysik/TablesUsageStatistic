@@ -1,0 +1,65 @@
+﻿
+    <Window x:Class="TablesUsageStatistic.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            mc:Ignorable="d"
+        Title="MainWindow" Height="535.2" Width="576">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Open"/>
+                    <MenuItem Header="_Close"/>
+                    <MenuItem Header="_Save"/>
+                </MenuItem>
+            </Menu>
+            <StackPanel></StackPanel>
+        </DockPanel>
+        <WrapPanel Grid.Row="1">
+            <Label >Type your query and then ctrl+enter to parse....</Label>
+            <Label >Max Depth:</Label>
+            <TextBox x:Name="DepthText">7</TextBox>
+        </WrapPanel>
+
+        <Grid Grid.Row="2" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <RichTextBox Grid.Row="0"
+                             x:Name="InputBox" VerticalAlignment="Stretch" AcceptsReturn="true" KeyUp="UIElement_OnKeyUp" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text="SELECT  p.Name, p.SecondName SurName, CAST(d.Department AS VARCHAR(100)) DepartmentName, (SELECT TOP 1 n.Name FROM dbo.DimPerson n WHERE n.ID = p.ID) AS FirstPersona, s.Revenue FROM dbo.DimPerson p LEFT JOIN dbo.FactSales s ON p.PersonID = s.SalesPersonID LEFT JOIN dbo.DimDepartment d  ON d.DepartmentID = p.DepartmentID AND d.DepartmentID = s.DepartmentID WHERE s.Revenue IS NOT NULL AND s.Date BETWEEN '2018-01-01' AND '2018-02-01' AND EXISTS (SELECT TOP 1 1 FROM dbo.DimExists)"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+
+            <TextBox  Grid.Row="1" x:Name="Errors" IsReadOnly="true" Height="30" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"></TextBox>
+
+        </Grid>
+
+        <GridSplitter Height="5" HorizontalAlignment="Stretch" Margin="0"
+		      VerticalAlignment="Center"
+		      ResizeDirection="Rows"
+		      ShowsPreview="True" Grid.Row="3"></GridSplitter>
+        <TabControl Grid.Row="4"> 
+            <TabItem x:Name="NewOutput" Header="Stats" >
+                <TreeView  x:Name="Stats" VerticalAlignment="Stretch"></TreeView>
+            </TabItem>
+
+        </TabControl>
+
+
+    </Grid>
+</Window>

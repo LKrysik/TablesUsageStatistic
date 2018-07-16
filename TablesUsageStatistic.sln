@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablesUsageStatistic", "TablesUsageStatistic\TablesUsageStatistic.csproj", "{598C2FD0-4048-4764-9F28-0CA9BB687F1B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{598C2FD0-4048-4764-9F28-0CA9BB687F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{598C2FD0-4048-4764-9F28-0CA9BB687F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{598C2FD0-4048-4764-9F28-0CA9BB687F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{598C2FD0-4048-4764-9F28-0CA9BB687F1B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3E8462DD-95D6-445C-B576-0E48E6510B56}
+	EndGlobalSection
+EndGlobal
