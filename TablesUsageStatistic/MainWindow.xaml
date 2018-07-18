@@ -58,10 +58,10 @@
             <TabItem Header="Results" HorizontalAlignment="Left"  VerticalAlignment="Stretch" Width="53.6">
                 <DataGrid x:Name="ResultGrid" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
                     <DataGrid.Columns >
-                        <DataGridTextColumn CanUserSort="True" MinWidth="100" Header="Database Name" x:Name="DatabaseName"></DataGridTextColumn>
-                        <DataGridTextColumn CanUserSort="True" MinWidth="100" Header="Schema Name" x:Name="SchemaName"></DataGridTextColumn>
-                        <DataGridTextColumn CanUserSort="True" MinWidth="100" Header="Table Name" x:Name="TableName"></DataGridTextColumn>
-                        <DataGridTextColumn CanUserSort="True" MinWidth="70" Header="Count" x:Name="CountTables"></DataGridTextColumn>
+                        <DataGridTextColumn CanUserSort="True" Binding="{Binding Path=Database}" MinWidth="100" Header="Database Name" x:Name="DatabaseName"></DataGridTextColumn>
+                        <DataGridTextColumn CanUserSort="True" Binding="{Binding Path=Schema}" MinWidth="100" Header="Schema Name" x:Name="SchemaName"></DataGridTextColumn>
+                        <DataGridTextColumn CanUserSort="True" Binding="{Binding Path=Name}" MinWidth="100" Header="Table Name" x:Name="TableName"></DataGridTextColumn>
+                        <DataGridTextColumn CanUserSort="True" Binding="{Binding Path=Iterator}" MinWidth="70" Header="Count" x:Name="CountTables"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
 

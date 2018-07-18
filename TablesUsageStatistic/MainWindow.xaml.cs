@@ -50,7 +50,8 @@ namespace TablesUsageStatistic
             foreach (var i in statsEnumerator.GetDistinctNodes())
             {
                 Stats.Items.Add(i);
-                
+
+                ResultGrid.Items.Add(i);
 
             }
         }

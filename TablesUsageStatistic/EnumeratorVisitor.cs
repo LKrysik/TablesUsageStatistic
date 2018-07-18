@@ -35,10 +35,10 @@ namespace TablesUsageStatistic
     }
     public class Table
     {
-        public string Name;
-        public string Schema = "";
-        public string Database = "";
-        public string Server = "";
+        public string Name { get; set; }
+        public string Schema { get; set; } = "";
+        public string Database { get; set; } = "";
+        public string Server { get; set; } = "";
 
         public int Iterator { get; set; } = 1;
 
