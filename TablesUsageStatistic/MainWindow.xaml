@@ -1,5 +1,4 @@
-﻿
-    <Window x:Class="TablesUsageStatistic.MainWindow"
+﻿<Window x:Class="TablesUsageStatistic.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -52,9 +51,20 @@
 		      VerticalAlignment="Center"
 		      ResizeDirection="Rows"
 		      ShowsPreview="True" Grid.Row="3"></GridSplitter>
-        <TabControl Grid.Row="4"> 
+        <TabControl Grid.Row="4">
             <TabItem x:Name="NewOutput" Header="Stats" >
                 <TreeView  x:Name="Stats" VerticalAlignment="Stretch"></TreeView>
+            </TabItem>
+            <TabItem Header="Results" HorizontalAlignment="Left"  VerticalAlignment="Stretch" Width="53.6">
+                <DataGrid x:Name="ResultGrid" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
+                    <DataGrid.Columns >
+                        <DataGridTextColumn CanUserSort="True" MinWidth="100" Header="Database Name" x:Name="DatabaseName"></DataGridTextColumn>
+                        <DataGridTextColumn CanUserSort="True" MinWidth="100" Header="Schema Name" x:Name="SchemaName"></DataGridTextColumn>
+                        <DataGridTextColumn CanUserSort="True" MinWidth="100" Header="Table Name" x:Name="TableName"></DataGridTextColumn>
+                        <DataGridTextColumn CanUserSort="True" MinWidth="70" Header="Count" x:Name="CountTables"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
             </TabItem>
 
         </TabControl>

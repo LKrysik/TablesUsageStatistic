@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Web.UI.Design.WebControls;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -48,7 +49,9 @@ namespace TablesUsageStatistic
 
             foreach (var i in statsEnumerator.GetDistinctNodes())
             {
-                Stats.Items.Add(i);        
+                Stats.Items.Add(i);
+                
+
             }
         }
 
@@ -75,5 +78,7 @@ namespace TablesUsageStatistic
         {
             Parse();
         }
+
+   
     }
 }
