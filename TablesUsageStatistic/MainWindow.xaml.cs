@@ -43,19 +43,8 @@ namespace TablesUsageStatistic
             var enumerator = new EnumeratorVisitor();
             var statsEnumerator = new StatsVisitor();
 
-
             script.Accept(statsEnumerator);
             Stats.Items.Clear();
-
-            Console.WriteLine("================");
-
-
-            foreach (var i in statsEnumerator.GetDistinctNodes())
-            {
-                Console.WriteLine(i.Name);
-            }
-
-
 
             foreach (var i in statsEnumerator.GetDistinctNodes())
             {
@@ -80,6 +69,11 @@ namespace TablesUsageStatistic
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
+        }
+
+        private void AnalyzeQueriesbutton_Click(object sender, RoutedEventArgs e)
+        {
+            Parse();
         }
     }
 }

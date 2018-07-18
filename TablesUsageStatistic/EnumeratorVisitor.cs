@@ -40,23 +40,18 @@ namespace TablesUsageStatistic
         public string Database = "";
         public string Server = "";
 
-        public int iterator = 1;
+        public int Iterator { get; set; } = 1;
 
         public override string ToString()
         {
-            return Server + " " + Database + " " + Schema + "." + Name + " : (" + iterator.ToString() +")";
+            return Server + " " + Database + " " + Schema + "." + Name + " : (" + Iterator.ToString() +")";
         }
-        //public bool Equals(Table obj)
-        //{
-        //    if (obj == null) return false;
-        //    return Name == ((Table)obj)?.Name && Schema == ((Table)obj)?.Schema && Database == ((Table)obj)?.Database && Server == ((Table)obj)?.Server;
-        //}
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
             if(this.GetHashCode() == obj.GetHashCode())
             {
-                iterator = iterator + ((Table)obj).iterator;
+                Iterator = Iterator + ((Table)obj).Iterator;
  
                 return true;
             }
@@ -68,10 +63,17 @@ namespace TablesUsageStatistic
         }
         public override int GetHashCode()
         {
-            MD5 md5Hasher = MD5.Create();
-            var hashed = md5Hasher.ComputeHash(Encoding.UTF8.GetBytes(Server + " . " + Database + " . " + Schema + " . " + Name));
-            var ivalue = BitConverter.ToInt32(hashed, 0);
-            return ivalue;
+            try
+            {
+                MD5 md5Hasher = MD5.Create();
+                var hashed = md5Hasher.ComputeHash(Encoding.UTF8.GetBytes(Server?.ToUpper() + " . " + Database?.ToUpper() + " . " + Schema?.ToUpper() + " . " + Name?.ToUpper()));
+                var ivalue = BitConverter.ToInt32(hashed, 0);
+                return ivalue;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.ToString());
+            }
         }
 
     }
@@ -93,7 +95,6 @@ namespace TablesUsageStatistic
         }
         public IEnumerable<Table> GetDistinctNodes()
         {
-            //DistinctNodes =
             return Nodes.Distinct();
         }
     }

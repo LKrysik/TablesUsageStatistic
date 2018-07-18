@@ -25,9 +25,8 @@
             <StackPanel></StackPanel>
         </DockPanel>
         <WrapPanel Grid.Row="1">
-            <Label >Type your query and then ctrl+enter to parse....</Label>
-            <Label >Max Depth:</Label>
-            <TextBox x:Name="DepthText">7</TextBox>
+            <Label >Type your query and then CTRL+ENTER to analyze....</Label>
+            <Button x:Name="AnalyzeQueries" Content="Analyze" Width="83" Height="22" Click="AnalyzeQueriesbutton_Click" RenderTransformOrigin="0.537,0.527"/>
         </WrapPanel>
 
         <Grid Grid.Row="2" Margin="0,0,0,0">
@@ -40,7 +39,7 @@
                              x:Name="InputBox" VerticalAlignment="Stretch" AcceptsReturn="true" KeyUp="UIElement_OnKeyUp" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0">
                 <FlowDocument>
                     <Paragraph>
-                        <Run Text="SELECT  p.Name, p.SecondName SurName, CAST(d.Department AS VARCHAR(100)) DepartmentName, (SELECT TOP 1 n.Name FROM dbo.DimPerson n WHERE n.ID = p.ID) AS FirstPersona, s.Revenue FROM dbo.DimPerson p LEFT JOIN dbo.FactSales s ON p.PersonID = s.SalesPersonID LEFT JOIN dbo.DimDepartment d  ON d.DepartmentID = p.DepartmentID AND d.DepartmentID = s.DepartmentID WHERE s.Revenue IS NOT NULL AND s.Date BETWEEN '2018-01-01' AND '2018-02-01' AND EXISTS (SELECT TOP 1 1 FROM dbo.DimExists)"/>
+                        <Run Text="SELECT  p.Name, p.SecondName SurName, CAST(d.Department AS VARCHAR(100)) DepartmentName, (SELECT TOP 1 n.Name FROM warehouse.dbo.DimPerson n WHERE n.ID = p.ID) AS FirstPersona, s.Revenue FROM dbo.DimPerson p LEFT JOIN dbo.FactSales s ON p.PersonID = s.SalesPersonID LEFT JOIN dbo.DimDepartment d  ON d.DepartmentID = p.DepartmentID AND d.DepartmentID = s.DepartmentID WHERE s.Revenue IS NOT NULL AND s.Date BETWEEN '2018-01-01' AND '2018-02-01' AND EXISTS (SELECT TOP 1 1 FROM dbo.DimExists); SELECT  p.Name, p.SecondName SurName, CAST(d.Department AS VARCHAR(100)) DepartmentName, (SELECT TOP 1 n.Name FROM dbo.DimPerson n WHERE n.ID = p.ID) AS FirstPersona, s.Revenue FROM DBO.DIMPERSON p LEFT JOIN DBO.FACTSALES s ON p.PersonID = s.SalesPersonID LEFT JOIN DBO.DimDepartmenT d  ON d.DepartmentID = p.DepartmentID AND d.DepartmentID = s.DepartmentID WHERE s.Revenue IS NOT NULL AND s.Date BETWEEN '2018-01-01' AND '2018-02-01' AND EXISTS (SELECT TOP 1 1 FROM Dbo.dimExists) "/>
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
