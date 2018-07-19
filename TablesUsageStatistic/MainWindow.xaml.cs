@@ -41,18 +41,14 @@ namespace TablesUsageStatistic
 
                 return;
             }
-            var enumerator = new EnumeratorVisitor();
             var statsEnumerator = new StatsVisitor();
 
             script.Accept(statsEnumerator);
-            Stats.Items.Clear();
+            ResultGrid.Items.Clear();
 
             foreach (var i in statsEnumerator.GetDistinctNodes())
             {
-                Stats.Items.Add(i);
-
                 ResultGrid.Items.Add(i);
-
             }
         }
 
@@ -69,17 +65,10 @@ namespace TablesUsageStatistic
                 Parse();
         }
 
-        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-            e.Handled = true;
-        }
-
         private void AnalyzeQueriesbutton_Click(object sender, RoutedEventArgs e)
         {
             Parse();
         }
 
-   
     }
 }

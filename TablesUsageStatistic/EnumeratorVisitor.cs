@@ -7,32 +7,6 @@ using Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace TablesUsageStatistic
 {
-    public class EnumeratorVisitor : TSqlFragmentVisitor
-    {
-        public List<QueryExpression> Nodes = new List<QueryExpression>();
-
-
-        public override void Visit(QueryExpression node)
-        {
-
-            base.Visit(node);
-
-            if(!Nodes.Any(p=>p.StartOffset <= node.StartOffset && p.StartOffset + p.FragmentLength >= node.StartOffset + node.FragmentLength))
-                Nodes.Add(node);
-
-        }
-    }
-    public class NamedTableVisitor : TSqlFragmentVisitor
-    {
-        public List<NamedTableReference> Nodes = new List<NamedTableReference>();
-
-        public override void ExplicitVisit(NamedTableReference node)
-        {
-            //var querySpecification = (node.QueryExpression) as QuerySpecification;
-            //if()
-            Nodes.Add(node);
-        }
-    }
     public class Table
     {
         public string Name { get; set; }
