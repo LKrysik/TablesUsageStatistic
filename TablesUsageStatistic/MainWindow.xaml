@@ -17,56 +17,58 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Open"/>
-                    <MenuItem Header="_Close"/>
                     <MenuItem Header="_Save"/>
+                    <MenuItem Header="_Close"/>
+                </MenuItem>
+                <MenuItem Header="Analyze">
+                    <MenuItem Header="_Start (Ctrl+Enter)" Click="AnalyzeQueriesbutton_Click" />
+                    <MenuItem Header="_Stop (Ctrl+Enter)" Click="AnalyzeQueriesbutton_Click" />
+                    <MenuItem Header="_Save results"/>
+                </MenuItem>
+                <MenuItem Header="Help">
+                    <MenuItem Header="_About"/>
+                    <MenuItem Header="_Help"/>
                 </MenuItem>
             </Menu>
             <StackPanel></StackPanel>
         </DockPanel>
-        <WrapPanel Grid.Row="1">
-            <Label >Type your query and then CTRL+ENTER to analyze....</Label>
-            <Button x:Name="AnalyzeQueries" Content="Analyze" Width="83" Height="22" Click="AnalyzeQueriesbutton_Click" RenderTransformOrigin="0.537,0.527"/>
-        </WrapPanel>
+        <WrapPanel Grid.Row="1"/>
 
-        <Grid Grid.Row="2" Margin="0,0,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-            </Grid.RowDefinitions>
-
-            <RichTextBox Grid.Row="0"
+        <RichTextBox Grid.Row="2"
                              x:Name="InputBox" VerticalAlignment="Stretch" AcceptsReturn="true" KeyUp="UIElement_OnKeyUp" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0">
-                <FlowDocument>
-                    <Paragraph>
-                        <Run Text="SELECT  p.Name, p.SecondName SurName, CAST(d.Department AS VARCHAR(100)) DepartmentName, (SELECT TOP 1 n.Name FROM warehouse.dbo.DimPerson n WHERE n.ID = p.ID) AS FirstPersona, s.Revenue FROM dbo.DimPerson p LEFT JOIN dbo.FactSales s ON p.PersonID = s.SalesPersonID LEFT JOIN dbo.DimDepartment d  ON d.DepartmentID = p.DepartmentID AND d.DepartmentID = s.DepartmentID WHERE s.Revenue IS NOT NULL AND s.Date BETWEEN '2018-01-01' AND '2018-02-01' AND EXISTS (SELECT TOP 1 1 FROM dbo.DimExists); SELECT  p.Name, p.SecondName SurName, CAST(d.Department AS VARCHAR(100)) DepartmentName, (SELECT TOP 1 n.Name FROM dbo.DimPerson n WHERE n.ID = p.ID) AS FirstPersona, s.Revenue FROM DBO.DIMPERSON p LEFT JOIN DBO.FACTSALES s ON p.PersonID = s.SalesPersonID LEFT JOIN DBO.DimDepartmenT d  ON d.DepartmentID = p.DepartmentID AND d.DepartmentID = s.DepartmentID WHERE s.Revenue IS NOT NULL AND s.Date BETWEEN '2018-01-01' AND '2018-02-01' AND EXISTS (SELECT TOP 1 1 FROM Dbo.dimExists) "/>
-                    </Paragraph>
-                </FlowDocument>
-            </RichTextBox>
-
-            <TextBox  Grid.Row="1" x:Name="Errors" IsReadOnly="true" Height="30" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"></TextBox>
-
-        </Grid>
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="SELECT  p.Name, p.SecondName SurName, CAST(d.Department AS VARCHAR(100)) DepartmentName, (SELECT TOP 1 n.Name FROM warehouse.dbo.DimPerson n WHERE n.ID = p.ID) AS FirstPersona, s.Revenue FROM dbo.DimPerson p LEFT JOIN dbo.FactSales s ON p.PersonID = s.SalesPersonID LEFT JOIN dbo.DimDepartment d  ON d.DepartmentID = p.DepartmentID AND d.DepartmentID = s.DepartmentID WHERE s.Revenue IS NOT NULL AND s.Date BETWEEN '2018-01-01' AND '2018-02-01' AND EXISTS (SELECT TOP 1 1 FROM dbo.DimExists); SELECT  p.Name, p.SecondName SurName, CAST(d.Department AS VARCHAR(100)) DepartmentName, (SELECT TOP 1 n.Name FROM dbo.DimPerson n WHERE n.ID = p.ID) AS FirstPersona, s.Revenue FROM DBO.DIMPERSON p LEFT JOIN DBO.FACTSALES s ON p.PersonID = s.SalesPersonID LEFT JOIN DBO.DimDepartmenT d  ON d.DepartmentID = p.DepartmentID AND d.DepartmentID = s.DepartmentID WHERE s.Revenue IS NOT NULL AND s.Date BETWEEN '2018-01-01' AND '2018-02-01' AND EXISTS (SELECT TOP 1 1 FROM Dbo.dimExists) "/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
 
         <GridSplitter Height="5" HorizontalAlignment="Stretch" Margin="0"
 		      VerticalAlignment="Center"
 		      ResizeDirection="Rows"
 		      ShowsPreview="True" Grid.Row="3"></GridSplitter>
         <TabControl Grid.Row="4">
-
             <TabItem Header="Results" HorizontalAlignment="Left"  VerticalAlignment="Stretch" Width="53.6">
-                <DataGrid x:Name="ResultGrid" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
-                    <DataGrid.Columns >
-                        <DataGridTextColumn CanUserSort="True" Binding="{Binding Path=Database}" MinWidth="100" Header="Database Name" x:Name="DatabaseName" IsReadOnly="True"></DataGridTextColumn>
-                        <DataGridTextColumn CanUserSort="True" Binding="{Binding Path=Schema}" MinWidth="100" Header="Schema Name" x:Name="SchemaName" IsReadOnly="True"></DataGridTextColumn>
-                        <DataGridTextColumn CanUserSort="True" Binding="{Binding Path=Name}" MinWidth="100" Header="Table Name" x:Name="TableName" IsReadOnly="True"></DataGridTextColumn>
-                        <DataGridTextColumn CanUserSort="True" Binding="{Binding Path=Iterator}" MinWidth="70" Header="Count" x:Name="CountTables" IsReadOnly="True"></DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <Grid Grid.Row="2" Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="ResultGrid" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
+                        <DataGrid.Columns >
+                            <DataGridTextColumn CanUserSort="True" Binding="{Binding Path=Database}" MinWidth="100" Header="Database Name" x:Name="DatabaseName" IsReadOnly="True"></DataGridTextColumn>
+                            <DataGridTextColumn CanUserSort="True" Binding="{Binding Path=Schema}" MinWidth="100" Header="Schema Name" x:Name="SchemaName" IsReadOnly="True"></DataGridTextColumn>
+                            <DataGridTextColumn CanUserSort="True" Binding="{Binding Path=Name}" MinWidth="100" Header="Table Name" x:Name="TableName" IsReadOnly="True"></DataGridTextColumn>
+                            <DataGridTextColumn CanUserSort="True" Binding="{Binding Path=Iterator}" MinWidth="70" Header="Count" x:Name="CountTables" IsReadOnly="True"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBox HorizontalScrollBarVisibility="Auto" Grid.Row="1" x:Name="Errors" IsReadOnly="true" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
 
+                    </TextBox>
+                </Grid>
             </TabItem>
 
         </TabControl>
-
 
     </Grid>
 </Window>
