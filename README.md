@@ -1,5 +1,5 @@
 # TablesUsageStatistic
 
-Using the Microsoft TSql Script Dom to generate tables usage statistic from query
+Analyze T-Sql queries to generate tables usage statistic.
 
-Goal is to facilitate analysis of TRC data 
+Gather some SQL Server Profiler data or other source os sql queries to find what tables was used 
