@@ -72,7 +72,7 @@
                         <TextBox Margin="10,10,0,0" BorderBrush="{x:Null}" FontWeight="Bold">Load queries from file</TextBox>
                     </TextBlock>
                     <WrapPanel HorizontalAlignment="Stretch">
-                        <TextBox x:Name="FromFilePath" Height="23" TextWrapping="NoWrap" Text="..." Width="440" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,5,10"/>
+                        <TextBox x:Name="FromFilePath" Height="23" TextWrapping="NoWrap" Text="" Width="440" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,5,10"/>
                         <Button x:Name="buttFromFileSelectPath" Content="  ...  " Margin="0,10,10,10" Click="buttFromFileSelectPath_Click"/>
                     </WrapPanel>
                 </StackPanel>

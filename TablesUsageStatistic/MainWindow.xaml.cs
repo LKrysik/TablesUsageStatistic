@@ -62,6 +62,31 @@ namespace TablesUsageStatistic
             if ((tabControl.SelectedItem as TabItem).Name == "tabFromFile")
             {
                 Console.WriteLine("tabFromFile");
+                if (FromFilePath.Text != null)
+                {
+                    var script = parser.Parse(new StringReader(File.ReadAllText(FromFilePath.Text)), out IList<ParseError> errors);
+
+                    if (errors.Count > 0)
+                    {
+
+                        Errors.Text = "";
+                        foreach (var e in errors)
+                        {
+                            Errors.Text += "Error: " + e.Message + " at: " + e.Offset + "\r\n";
+                        }
+                        return;
+                    }
+                    var statsEnumerator = new StatsVisitor();
+
+                    script.Accept(statsEnumerator);
+                    ResultGrid.Items.Clear();
+
+                    foreach (var i in statsEnumerator.GetDistinctNodes())
+                    {
+                        ResultGrid.Items.Add(i);
+                    }
+                }
+
             }
         }
         private string GetText()
