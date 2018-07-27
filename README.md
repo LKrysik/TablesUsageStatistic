@@ -6,8 +6,8 @@ This project is published as [code on GitHub](https://github.com/LKrysik/TablesU
 
 ## What can you do with this tool?
 
-- You can connect to database and analyze queries saved by Trace Profiler 
-- You can load queries from file or directly imput to TUS
+- You can connect to database and analyze queries saved by Trace Profiler or you can load queries from file or directly imput to this tool
+- Create tables usage statistic - used and unused tables 
 
 ## What you need
 
