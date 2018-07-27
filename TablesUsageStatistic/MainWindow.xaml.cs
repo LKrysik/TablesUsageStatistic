@@ -7,9 +7,11 @@ using System.IO;
 using System.Web.UI.Design.WebControls;
 using System.Windows;
 using System.Windows.Documents;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
+using Microsoft.Win32;
 
 namespace TablesUsageStatistic
 {
@@ -22,44 +24,50 @@ namespace TablesUsageStatistic
         {
             InitializeComponent();
            
-        }  
-        private void Parse() 
+        }
+        private void Parse()
         {
             Errors.Text = "";
 
             var parser = new TSql120Parser(true);
-
-            var script = parser.Parse(new StringReader(GetText()), out IList<ParseError> errors);
-
-            if (errors.Count > 0)
+            if ((tabControl.SelectedItem as TabItem).Name == "tabText")
             {
+                Console.WriteLine("tabText");
+                var script = parser.Parse(new StringReader(GetText()), out IList<ParseError> errors);
 
-                Errors.Text = "";
-                foreach (var e in errors)
+                if (errors.Count > 0)
                 {
-                    Errors.Text += "Error: " + e.Message + " at: " + e.Offset + "\r\n";
+
+                    Errors.Text = "";
+                    foreach (var e in errors)
+                    {
+                        Errors.Text += "Error: " + e.Message + " at: " + e.Offset + "\r\n";
+                    }
+                    return;
                 }
+                var statsEnumerator = new StatsVisitor();
 
+                script.Accept(statsEnumerator);
+                ResultGrid.Items.Clear();
 
-                return;
+                foreach (var i in statsEnumerator.GetDistinctNodes())
+                {
+                    ResultGrid.Items.Add(i);
+                }
             }
-            var statsEnumerator = new StatsVisitor();
-
-            script.Accept(statsEnumerator);
-            ResultGrid.Items.Clear();
-
-            foreach (var i in statsEnumerator.GetDistinctNodes())
+            if ((tabControl.SelectedItem as TabItem).Name == "tabServer")
             {
-                ResultGrid.Items.Add(i);
+                Console.WriteLine("tabServer");
+            }
+            if ((tabControl.SelectedItem as TabItem).Name == "tabFromFile")
+            {
+                Console.WriteLine("tabFromFile");
             }
         }
-
         private string GetText()
         {
             return new TextRange(InputBox.Document.ContentStart, InputBox.Document.ContentEnd).Text;
         }
-
-       
 
         private void UIElement_OnKeyUp(object sender, KeyEventArgs e)
         {
@@ -80,6 +88,18 @@ namespace TablesUsageStatistic
 
             
 
+        }
+
+        private void buttFromFileSelectPath_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text|*.txt|SQL|*.sql|All|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                //FromFilePath.Text = File.ReadAllText(openFileDialog.FileName);
+                FromFilePath.Text = openFileDialog.FileName;
+            }
+                
         }
     }
 }
