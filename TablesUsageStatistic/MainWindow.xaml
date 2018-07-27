@@ -4,11 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             mc:Ignorable="d"
-        Title="MainWindow" Height="535.2" Width="576">
+        Title="Table Usage Analysis" Height="535.2" Width="576">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
@@ -30,9 +30,33 @@
                     <MenuItem Header="_Help"/>
                 </MenuItem>
             </Menu>
-            <StackPanel></StackPanel>
         </DockPanel>
-        <WrapPanel Grid.Row="1"/>
+        <WrapPanel Grid.Row="1" VerticalAlignment="Center" Background="#FFB1B1B1" HorizontalAlignment="Stretch" >
+
+            <WrapPanel HorizontalAlignment="Stretch">
+                <WrapPanel HorizontalAlignment="Stretch">
+                    <TextBox x:Name="ConnServerNameHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Server" Width="45" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                    <TextBox x:Name="ConnServerNameTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap"  Text="" Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Stretch">
+                    <TextBox x:Name="ConnDatabaseNameHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Database" Width="75" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                    <TextBox x:Name="ConnDatabaseNameTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap"  Text="" Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"/>
+                </WrapPanel>
+            </WrapPanel>
+                <WrapPanel HorizontalAlignment="Stretch">
+                    <WrapPanel HorizontalAlignment="Stretch">
+                    <TextBox x:Name="ConnTableHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Table" Width="45" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                    <TextBox x:Name="ConnTableTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap"  Text="" Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"/>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Stretch">
+                    <TextBox x:Name="ConnColumnHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Column with SQL Query" Width="152" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                    <TextBox x:Name="ConnColumnTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap"  Text="" Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"/>
+                    </WrapPanel>
+
+        </WrapPanel>
+            <Button x:Name="ConnConnect" Content="Connect" Width="85" Margin="10,0,0,0" Height="20" Click="ConnConnect_Click"/>
+
+        </WrapPanel>
 
         <RichTextBox Grid.Row="2"
                              x:Name="InputBox" VerticalAlignment="Stretch" AcceptsReturn="true" KeyUp="UIElement_OnKeyUp" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0">

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Web.UI.Design.WebControls;
@@ -70,5 +72,14 @@ namespace TablesUsageStatistic
             Parse();
         }
 
+        private void ConnConnect_Click(object sender, RoutedEventArgs e)
+        {
+            SqlConnection sqlcon = null;
+            DbConnection.Dispose(sqlcon);
+            sqlcon = DbConnection.GetConnection();
+
+            
+
+        }
     }
 }
