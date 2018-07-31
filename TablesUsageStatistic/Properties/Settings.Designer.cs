@@ -46,5 +46,17 @@ namespace TablesUsageStatistic.Properties {
                 this["db_Database"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string db_Login {
+            get {
+                return ((string)(this["db_Login"]));
+            }
+            set {
+                this["db_Login"] = value;
+            }
+        }
     }
 }

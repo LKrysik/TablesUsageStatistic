@@ -32,12 +32,13 @@ namespace TablesUsageStatistic
         {
             ConnServerNameTextBox.Text = Settings.Default["db_Server"].ToString();
             ConnDatabaseNameTextBox.Text = Settings.Default["db_Database"].ToString();
-
+            ConnLoginTextBox.Text = Settings.Default["db_Login"].ToString();
         }
         public void SaveProjectSettings()
         {
             Settings.Default["db_Server"] = ConnServerNameTextBox.Text;
-            Settings.Default["db_Database"]= ConnDatabaseNameTextBox.Text;
+            Settings.Default["db_Database"] = ConnDatabaseNameTextBox.Text;
+            Settings.Default["db_Login"] = ConnLoginTextBox.Text;
             Settings.Default.Save();
         }
         private void Parse()
@@ -106,9 +107,6 @@ namespace TablesUsageStatistic
             SqlConnection sqlcon = null;
             DbConnection.Dispose(sqlcon);
             sqlcon = DbConnection.GetConnection();
-
-            
-
         }
 
         private void buttFromFileSelectPath_Click(object sender, RoutedEventArgs e)
@@ -119,11 +117,10 @@ namespace TablesUsageStatistic
             {
                 //FromFilePath.Text = File.ReadAllText(openFileDialog.FileName);
                 FromFilePath.Text = openFileDialog.FileName;
-            }
-                
+            }         
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_Click_Save(object sender, RoutedEventArgs e)
         {
             SaveProjectSettings();
         }
