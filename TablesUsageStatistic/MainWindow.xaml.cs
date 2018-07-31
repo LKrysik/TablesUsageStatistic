@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Navigation;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 using Microsoft.Win32;
+using TablesUsageStatistic.Properties;
 
 namespace TablesUsageStatistic
 {
@@ -23,37 +24,33 @@ namespace TablesUsageStatistic
         public MainWindow()
         {
             InitializeComponent();
+
+            LoadProjectSettings();
            
+        }
+        public void LoadProjectSettings()
+        {
+            ConnServerNameTextBox.Text = Settings.Default["db_Server"].ToString();
+            ConnDatabaseNameTextBox.Text = Settings.Default["db_Database"].ToString();
+
+        }
+        public void SaveProjectSettings()
+        {
+            Settings.Default["db_Server"] = ConnServerNameTextBox.Text;
+            Settings.Default["db_Database"]= ConnDatabaseNameTextBox.Text;
+            Settings.Default.Save();
         }
         private void Parse()
         {
             Errors.Text = "";
 
             var parser = new TSql120Parser(true);
+            StringReader QueryStrings = new StringReader("");
+
             if ((tabControl.SelectedItem as TabItem).Name == "tabText")
             {
                 Console.WriteLine("tabText");
-                var script = parser.Parse(new StringReader(GetText()), out IList<ParseError> errors);
-
-                if (errors.Count > 0)
-                {
-
-                    Errors.Text = "";
-                    foreach (var e in errors)
-                    {
-                        Errors.Text += "Error: " + e.Message + " at: " + e.Offset + "\r\n";
-                    }
-                    return;
-                }
-                var statsEnumerator = new StatsVisitor();
-
-                script.Accept(statsEnumerator);
-                ResultGrid.Items.Clear();
-
-                foreach (var i in statsEnumerator.GetDistinctNodes())
-                {
-                    ResultGrid.Items.Add(i);
-                }
+                QueryStrings = new StringReader(GetText());
             }
             if ((tabControl.SelectedItem as TabItem).Name == "tabServer")
             {
@@ -64,29 +61,28 @@ namespace TablesUsageStatistic
                 Console.WriteLine("tabFromFile");
                 if (FromFilePath.Text != null)
                 {
-                    var script = parser.Parse(new StringReader(File.ReadAllText(FromFilePath.Text)), out IList<ParseError> errors);
-
-                    if (errors.Count > 0)
-                    {
-
-                        Errors.Text = "";
-                        foreach (var e in errors)
-                        {
-                            Errors.Text += "Error: " + e.Message + " at: " + e.Offset + "\r\n";
-                        }
-                        return;
-                    }
-                    var statsEnumerator = new StatsVisitor();
-
-                    script.Accept(statsEnumerator);
-                    ResultGrid.Items.Clear();
-
-                    foreach (var i in statsEnumerator.GetDistinctNodes())
-                    {
-                        ResultGrid.Items.Add(i);
-                    }
+                    QueryStrings = new StringReader(File.ReadAllText(FromFilePath.Text));
                 }
+            }
+      
+            var script = parser.Parse(QueryStrings, out IList<ParseError> errors);
+            if (errors.Count > 0)
+            {
+                Errors.Text = "";
+                foreach (var e in errors)
+                {
+                    Errors.Text += "Error: " + e.Message + " at: " + e.Offset + "\r\n";
+                }
+                return;
+            }
+            var statsEnumerator = new StatsVisitor();
 
+            script.Accept(statsEnumerator);
+            ResultGrid.Items.Clear();
+
+            foreach (var i in statsEnumerator.GetDistinctNodes())
+            {
+                ResultGrid.Items.Add(i);
             }
         }
         private string GetText()
@@ -125,6 +121,11 @@ namespace TablesUsageStatistic
                 FromFilePath.Text = openFileDialog.FileName;
             }
                 
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            SaveProjectSettings();
         }
     }
 }

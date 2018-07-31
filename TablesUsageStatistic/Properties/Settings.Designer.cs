@@ -22,5 +22,29 @@ namespace TablesUsageStatistic.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string db_Server {
+            get {
+                return ((string)(this["db_Server"]));
+            }
+            set {
+                this["db_Server"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string db_Database {
+            get {
+                return ((string)(this["db_Database"]));
+            }
+            set {
+                this["db_Database"] = value;
+            }
+        }
     }
 }

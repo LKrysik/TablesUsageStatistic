@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             mc:Ignorable="d"
-        Title="Table Usage Analysis" Height="535.2" Width="576">
+        Title="Tables Usage Statistic" Height="535.2" Width="576">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
@@ -16,7 +16,7 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Open"/>
-                    <MenuItem Header="_Save"/>
+                    <MenuItem Header="_Save" Click="MenuItem_Click"/>
                     <MenuItem Header="_Close"/>
                 </MenuItem>
                 <MenuItem Header="Analyze">
@@ -37,7 +37,7 @@
                     <WrapPanel HorizontalAlignment="Stretch" >
                         <WrapPanel HorizontalAlignment="Stretch">
                             <TextBox x:Name="ConnServerNameHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Server" Width="45" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
-                            <TextBox x:Name="ConnServerNameTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap"  Text="" Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"/>
+                            <TextBox x:Name="ConnServerNameTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap"  Text="" Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"></TextBox>
                         </WrapPanel>
                         <WrapPanel HorizontalAlignment="Stretch">
                             <TextBox x:Name="ConnDatabaseNameHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Database" Width="75" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
@@ -46,12 +46,12 @@
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Stretch">
                         <WrapPanel HorizontalAlignment="Stretch">
-                            <TextBox x:Name="ConnTableHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Table" Width="45" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
-                            <TextBox x:Name="ConnTableTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap"  Text="" Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"/>
+                            <TextBox x:Name="ConnLoginHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Login" Width="45" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                            <TextBox x:Name="ConnLoginTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap"  Text="" Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"/>
                         </WrapPanel>
                         <WrapPanel HorizontalAlignment="Stretch">
-                            <TextBox x:Name="ConnColumnHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Column with SQL Query" Width="152" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
-                            <TextBox x:Name="ConnColumnTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap"  Text="" Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"/>
+                            <TextBox x:Name="ConnPasswordHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Password" Width="75" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                            <PasswordBox x:Name="ConnPasswordTextBox"  HorizontalAlignment="Stretch"  Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"/>
                         </WrapPanel>
                     </WrapPanel>
                     <Button x:Name="ConnConnect" Content="Connect" Width="85" Margin="10,0,0,0" Height="20" Click="ConnConnect_Click"/>
