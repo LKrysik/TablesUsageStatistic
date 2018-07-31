@@ -12,11 +12,11 @@ namespace TablesUsageStatistic
     {
 
 
-        public static SqlConnection GetConnection()
+        public static SqlConnection GetConnection(string Server, string InitialCatalog, string ID, string Password)
         {
             try
             {
-                string ConnectionStrings = GetConnectionString();
+                string ConnectionStrings = GetConnectionString(Server,InitialCatalog,ID,Password);
                 SqlConnection con = new SqlConnection(ConnectionStrings);
                 con.Open();
                 return con;
@@ -44,9 +44,9 @@ namespace TablesUsageStatistic
                 Console.WriteLine("Exception: {0}", e);
             }
         }
-        static private string GetConnectionString()
+        static private string GetConnectionString(string Server, string InitialCatalog, string ID, string Password)
         {
-            return "";
+            return "Server=" + Server + ";Initial Catalog=" + InitialCatalog + ";Persist Security Info=False;User ID=" +ID+ ";Password=" + Password + "!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         }
         //-- prepares SqlCommand object
         public static SqlCommand PrepareCommand(SqlConnection con, string commandName, CommandType commandType, Dictionary<string, string> Parameters)
