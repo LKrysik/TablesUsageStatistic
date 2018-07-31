@@ -106,7 +106,13 @@ namespace TablesUsageStatistic
         {
             SqlConnection sqlcon = null;
             DbConnection.Dispose(sqlcon);
-            sqlcon = DbConnection.GetConnection();
+            Console.WriteLine(sender.ToString());
+            Console.WriteLine(e.ToString());
+            sqlcon = DbConnection.GetConnection(ConnServerNameTextBox.Text, ConnDatabaseNameTextBox.Text,ConnLoginTextBox.Text, ConnPasswordTextBox.Password.ToString());
+            if(sqlcon.State == ConnectionState.Open)
+            {
+                ConnConnect.Content = "Disconect";
+            }
         }
 
         private void buttFromFileSelectPath_Click(object sender, RoutedEventArgs e)

@@ -46,7 +46,9 @@ namespace TablesUsageStatistic
         }
         static private string GetConnectionString(string Server, string InitialCatalog, string ID, string Password)
         {
-            return "Server=" + Server + ";Initial Catalog=" + InitialCatalog + ";Persist Security Info=False;User ID=" +ID+ ";Password=" + Password + "!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            string str = "Server=" + Server + ";Initial Catalog=" + InitialCatalog + ";Persist Security Info=False;User ID=" + ID + ";Password=" + Password + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            Console.WriteLine(str);
+            return "Server=" + Server + ";Initial Catalog=" + InitialCatalog + ";Persist Security Info=False;User ID=" +ID+ ";Password=" + Password + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         }
         //-- prepares SqlCommand object
         public static SqlCommand PrepareCommand(SqlConnection con, string commandName, CommandType commandType, Dictionary<string, string> Parameters)
