@@ -10,12 +10,14 @@ This project is published as [code on GitHub](https://github.com/LKrysik/TablesU
 
 ## What can you do with this tool?
 
-- You can connect to database and analyze queries saved by Trace Profiler or you can load queries from file or directly imput to this tool
-- Create tables usage statistic - used and unused tables 
+- Insert any SQL (t-sql) queries and find how many times tables and vies ware used. This will help you find unused tables
+- Insert SQL directly and create statistic
+- Load SQL from file and create statistic
+- Load SQL queries from database (incoming)
 
 ## What you need
 
-- You need to store some queries executed by end users. You can use Trace Profiler and save data to tables. 
+- You need to store some queries executed by end users. You can use Trace Profiler data stored to tables.
 
 ## Goal
 
