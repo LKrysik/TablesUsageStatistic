@@ -11,32 +11,41 @@ namespace TablesUsageStatistic
     public static class DbConnection
     {
 
+        public static SqlConnection connection = new SqlConnection();
 
-        public static SqlConnection GetConnection(string Server, string InitialCatalog, string ID, string Password)
+        public static void Connect(string Server, string InitialCatalog, string ID, string Password)
         {
             try
             {
+                Dispose(connection);
                 string ConnectionStrings = GetConnectionString(Server,InitialCatalog,ID,Password);
-                SqlConnection con = new SqlConnection(ConnectionStrings);
-                con.Open();
-                return con;
+                connection.ConnectionString = ConnectionStrings;
+                connection.Open();
             }
             catch (Exception e)
             {
                 Console.WriteLine("Exception: {0}", e);
-                return null;
             }
         }
+        public static void Disconnect()
+        {
+            Dispose(connection);
+        }
+        public static SqlConnection GetConnection()
+        {
+                return connection;
+        }
 
+ 
         //-- code to make sure to close connection and dispose the object
-        public static void Dispose(SqlConnection con)
+        public static void Dispose(SqlConnection connection)
         {
             try
             {
-                if (con != null && con.State == ConnectionState.Open)
+                if (connection != null && connection.State == ConnectionState.Open)
                 {
-                    con.Close();
-                    con.Dispose();
+                    connection.Close();
+                    connection.Dispose();
                 }
             }
             catch (Exception e)
@@ -44,6 +53,7 @@ namespace TablesUsageStatistic
                 Console.WriteLine("Exception: {0}", e);
             }
         }
+
         static private string GetConnectionString(string Server, string InitialCatalog, string ID, string Password)
         {
             string str = "Server=" + Server + ";Initial Catalog=" + InitialCatalog + ";Persist Security Info=False;User ID=" + ID + ";Password=" + Password + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
@@ -51,9 +61,9 @@ namespace TablesUsageStatistic
             return "Server=" + Server + ";Initial Catalog=" + InitialCatalog + ";Persist Security Info=False;User ID=" +ID+ ";Password=" + Password + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         }
         //-- prepares SqlCommand object
-        public static SqlCommand PrepareCommand(SqlConnection con, string commandName, CommandType commandType, Dictionary<string, string> Parameters)
+        public static SqlCommand PrepareCommand(SqlConnection connection, string commandName, CommandType commandType, Dictionary<string, string> Parameters)
         {
-            SqlCommand cmd = new SqlCommand(commandName, con);
+            SqlCommand cmd = new SqlCommand(commandName, connection);
             cmd.CommandType = commandType;
             if (null != Parameters)
             {

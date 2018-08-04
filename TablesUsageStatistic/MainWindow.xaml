@@ -17,7 +17,7 @@
                 <MenuItem Header="_File">
                     <MenuItem Header="_Open"/>
                     <MenuItem Header="_Save" Click="MenuItem_Click_Save"/>
-                    <MenuItem Header="_Close"/>
+                    <MenuItem Header="_Close" Click="MenuItem_Click_Close"/>
                 </MenuItem>
                 <MenuItem Header="Analyze">
                     <MenuItem Header="_Start (Ctrl+Enter)" Click="AnalyzeQueriesbutton_Click" />
@@ -37,7 +37,7 @@
                     <WrapPanel HorizontalAlignment="Stretch" >
                         <WrapPanel HorizontalAlignment="Stretch">
                             <TextBox x:Name="ConnServerNameHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Server" Width="45" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
-                            <TextBox x:Name="ConnServerNameTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap"  Text="" Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"></TextBox>
+                            <TextBox x:Name="ConnServerNameTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap"  Text="" Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"/>
                         </WrapPanel>
                         <WrapPanel HorizontalAlignment="Stretch">
                             <TextBox x:Name="ConnDatabaseNameHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Database" Width="75" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>

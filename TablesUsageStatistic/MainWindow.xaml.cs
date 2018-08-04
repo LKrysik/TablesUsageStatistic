@@ -21,12 +21,14 @@ namespace TablesUsageStatistic
     /// </summary>
     public partial class MainWindow : Window
     {
+        SqlConnection sqlcon = new SqlConnection();
         public MainWindow()
         {
             InitializeComponent();
 
             LoadProjectSettings();
-           
+
+            DbConnection.connection.StateChange += new StateChangeEventHandler(OnStateChange);
         }
         public void LoadProjectSettings()
         {
@@ -101,20 +103,39 @@ namespace TablesUsageStatistic
         {
             Parse();
         }
-
         private void ConnConnect_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection sqlcon = null;
-            DbConnection.Dispose(sqlcon);
-            Console.WriteLine(sender.ToString());
-            Console.WriteLine(e.ToString());
-            sqlcon = DbConnection.GetConnection(ConnServerNameTextBox.Text, ConnDatabaseNameTextBox.Text,ConnLoginTextBox.Text, ConnPasswordTextBox.Password.ToString());
-            if(sqlcon.State == ConnectionState.Open)
+            if(ConnConnect.Content.ToString() =="Disconect")
             {
-                ConnConnect.Content = "Disconect";
+                DbConnection.Disconnect();
+            } else
+            {
+                DbConnection.Connect(ConnServerNameTextBox.Text, ConnDatabaseNameTextBox.Text, ConnLoginTextBox.Text, ConnPasswordTextBox.Password.ToString());
             }
         }
+        public void OnStateChange(object sender, StateChangeEventArgs args)
+        {
+            Console.WriteLine(
+              "The current Connection state has changed from {0} to {1}.",
+                args.OriginalState, args.CurrentState);
 
+            if (args.CurrentState == ConnectionState.Open)
+            {
+                ConnConnect.Content = "Disconect";
+                ConnServerNameTextBox.IsEnabled = false;
+                ConnLoginTextBox.IsEnabled = false;
+                ConnDatabaseNameTextBox.IsEnabled = false;
+                ConnPasswordTextBox.IsEnabled = false;
+            } else
+            {
+                ConnConnect.Content = "Connect";
+                ConnServerNameTextBox.IsEnabled = true;
+                ConnLoginTextBox.IsEnabled = true;
+                ConnDatabaseNameTextBox.IsEnabled = true;
+                ConnPasswordTextBox.IsEnabled = true;
+            }
+            
+        }
         private void buttFromFileSelectPath_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -129,6 +150,11 @@ namespace TablesUsageStatistic
         private void MenuItem_Click_Save(object sender, RoutedEventArgs e)
         {
             SaveProjectSettings();
+        }
+
+        private void MenuItem_Click_Close(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
