@@ -126,7 +126,8 @@ namespace TablesUsageStatistic
                 ConnLoginTextBox.IsEnabled = false;
                 ConnDatabaseNameTextBox.IsEnabled = false;
                 ConnPasswordTextBox.IsEnabled = false;
-            } else
+            }
+            else
             {
                 ConnConnect.Content = "Connect";
                 ConnServerNameTextBox.IsEnabled = true;
@@ -134,7 +135,6 @@ namespace TablesUsageStatistic
                 ConnDatabaseNameTextBox.IsEnabled = true;
                 ConnPasswordTextBox.IsEnabled = true;
             }
-            
         }
         private void buttFromFileSelectPath_Click(object sender, RoutedEventArgs e)
         {

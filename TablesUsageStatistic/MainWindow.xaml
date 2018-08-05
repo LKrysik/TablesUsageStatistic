@@ -32,33 +32,34 @@
         </DockPanel>
 
         <TabControl  Grid.Row="1" x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TabItem x:Name="tabServer" Header="Server">
+            <TabItem x:Name="tabServer" Header="Server" ToolTip="Load SQL queries from database">
                 <WrapPanel VerticalAlignment="Top"  Background="#FFB1B1B1" HorizontalAlignment="Stretch">
                     <WrapPanel HorizontalAlignment="Stretch" >
                         <WrapPanel HorizontalAlignment="Stretch">
-                            <TextBox x:Name="ConnServerNameHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Server" Width="45" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                            <TextBox x:Name="ConnServerNameHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Server" Width="45" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" IsEnabled="False"/>
                             <TextBox x:Name="ConnServerNameTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap"  Text="" Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"/>
                         </WrapPanel>
                         <WrapPanel HorizontalAlignment="Stretch">
-                            <TextBox x:Name="ConnDatabaseNameHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Database" Width="75" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                            <TextBox x:Name="ConnDatabaseNameHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Database" Width="75" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" IsEnabled="False"/>
                             <TextBox x:Name="ConnDatabaseNameTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap"  Text="" Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"/>
                         </WrapPanel>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Stretch">
                         <WrapPanel HorizontalAlignment="Stretch">
-                            <TextBox x:Name="ConnLoginHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Login" Width="45" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                            <TextBox x:Name="ConnLoginHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Login" Width="45" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" IsEnabled="False"/>
                             <TextBox x:Name="ConnLoginTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap"  Text="" Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"/>
                         </WrapPanel>
                         <WrapPanel HorizontalAlignment="Stretch">
-                            <TextBox x:Name="ConnPasswordHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Password" Width="75" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                            <TextBox x:Name="ConnPasswordHeaderTextBox" HorizontalAlignment="Stretch" TextWrapping="NoWrap" IsReadOnly="True" Text="Password" Width="75" TextAlignment="Center" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,2" IsReadOnlyCaretVisible="True" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" IsEnabled="False"/>
                             <PasswordBox x:Name="ConnPasswordTextBox"  HorizontalAlignment="Stretch"  Width="120" MinHeight="20" Height="20" VerticalAlignment="Center" Margin="1,0"/>
                         </WrapPanel>
                     </WrapPanel>
                     <Button x:Name="ConnConnect" Content="Connect" Width="85" Margin="10,0,0,0" Height="20" Click="ConnConnect_Click"/>
                 </WrapPanel>
+                
             </TabItem>
-            <TabItem x:Name="tabText" Header="Text">
-                <RichTextBox  x:Name="InputBox" VerticalAlignment="Stretch" AcceptsReturn="true" KeyUp="UIElement_OnKeyUp" VerticalScrollBarVisibility="Visible" Margin="0,0,0,0">
+            <TabItem x:Name="tabText" Header="Text" ToolTip="Insert SQL queries (best if semicolon separeted)">
+                <RichTextBox  x:Name="InputBox" VerticalAlignment="Stretch" AcceptsReturn="true" KeyUp="UIElement_OnKeyUp" VerticalScrollBarVisibility="Visible" Margin="0,0,0,0" AutomationProperties.HelpText="Insert SQL queries">
                     <FlowDocument >
                         <Paragraph >
                             <Run  Text="SELECT  p.Name, p.SecondName SurName, CAST(d.Department AS VARCHAR(100)) DepartmentName, (SELECT TOP 1 n.Name FROM warehouse.dbo.DimPerson n WHERE n.ID = p.ID) AS FirstPersona, s.Revenue FROM dbo.DimPerson p LEFT JOIN dbo.FactSales s ON p.PersonID = s.SalesPersonID LEFT JOIN dbo.DimDepartment d  ON d.DepartmentID = p.DepartmentID AND d.DepartmentID = s.DepartmentID WHERE s.Revenue IS NOT NULL AND s.Date BETWEEN '2018-01-01' AND '2018-02-01' AND EXISTS (SELECT TOP 1 1 FROM dbo.DimExists); SELECT  p.Name, p.SecondName SurName, CAST(d.Department AS VARCHAR(100)) DepartmentName, (SELECT TOP 1 n.Name FROM dbo.DimPerson n WHERE n.ID = p.ID) AS FirstPersona, s.Revenue FROM DBO.DIMPERSON p LEFT JOIN DBO.FACTSALES s ON p.PersonID = s.SalesPersonID LEFT JOIN DBO.DimDepartmenT d  ON d.DepartmentID = p.DepartmentID AND d.DepartmentID = s.DepartmentID WHERE s.Revenue IS NOT NULL AND s.Date BETWEEN '2018-01-01' AND '2018-02-01' AND EXISTS (SELECT TOP 1 1 FROM Dbo.dimExists) "/>
@@ -66,10 +67,10 @@
                     </FlowDocument>
                 </RichTextBox>
             </TabItem>
-            <TabItem x:Name="tabFromFile" Header="From file">
+            <TabItem x:Name="tabFromFile" Header="From file" ToolTip="Load SQL queries from text file">
                 <StackPanel>
                     <TextBlock>
-                        <TextBox Margin="10,10,0,0" BorderBrush="{x:Null}" FontWeight="Bold">Load queries from file</TextBox>
+                        <TextBox Margin="10,10,0,0" BorderBrush="{x:Null}" IsEnabled="False" FontWeight="Bold" SelectionBrush="{x:Null}">Load queries from file</TextBox>
                     </TextBlock>
                     <WrapPanel HorizontalAlignment="Stretch">
                         <TextBox x:Name="FromFilePath" Height="23" TextWrapping="NoWrap" Text="" Width="440" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,5,10"/>
