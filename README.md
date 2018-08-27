@@ -4,7 +4,8 @@
 [![Github Releases](https://img.shields.io/github/downloads/LKrysik/TablesUsageStatistic/latest/total.svg)](https://github.com/LKrysik/TablesUsageStatistic/releases/latest) [![GitHub release](https://img.shields.io/github/release/LKrysik/TablesUsageStatistic.svg)](https://github.com/LKrysik/TablesUsageStatistic/releases) [![Build status](https://tablesusagestatistic.visualstudio.com/TablesUsageStatistic/_apis/build/status/TablesUsageStatistic.svg)](https://tablesusagestatistic.visualstudio.com/TablesUsageStatistic/_apis/build/status/TablesUsageStatistic)
 
 
-The Tables Usage Statistic tools allow you to create tables usage statistic in T-Sql queries. Main goal of this tool is to find what tables was used in queries. Many time you may wonder what tables are used by users and what are not used. With this knowledge you could remove unnecesary tables and remove any existing ETL process.
+T-SQL Tables Usage Statistic - analyzes trace profiler data or any t-sql queries to find out which tables are in use. 
+The tool creates tables usage statistic, with this knowledge you could remove unnecesary tables and facilitate your data warehouse.
 This project is published as [code on GitHub](https://github.com/LKrysik/TablesUsageStatistic/).
 
 
