@@ -1,9 +1,8 @@
 # T-SQL Tables Usage Statistic for Data Warehouse   [![GitHub license](https://img.shields.io/github/license/LKrysik/TablesUsageStatistic.svg)](https://github.com/LKrysik/TablesUsageStatistic/blob/master/LICENSE)
 
 
-[![Github Releases](https://img.shields.io/github/downloads/LKrysik/TablesUsageStatistic/latest/total.svg)](https://github.com/LKrysik/TablesUsageStatistic/releases/latest) [![GitHub release](https://img.shields.io/github/release/LKrysik/TablesUsageStatistic.svg)](https://github.com/LKrysik/TablesUsageStatistic/releases) [![Build status](https://tablesusagestatistic.visualstudio.com/TablesUsageStatistic/_apis/build/status/TablesUsageStatistic.svg)](https://tablesusagestatistic.visualstudio.com/TablesUsageStatistic/_apis/build/status/TablesUsageStatistic)
-
- [![Build status](https://tablesusagestatistic.visualstudio.com/TablesUsageStatistic/_apis/build/status/TablesUsageStatistic)]
+[![Github Releases](https://img.shields.io/github/downloads/LKrysik/TablesUsageStatistic/latest/total.svg)](https://github.com/LKrysik/TablesUsageStatistic/releases/latest) [![GitHub release](https://img.shields.io/github/release/LKrysik/TablesUsageStatistic.svg)](https://github.com/LKrysik/TablesUsageStatistic/releases) 
+ ![Build status](https://tablesusagestatistic.visualstudio.com/TablesUsageStatistic/_apis/build/status/TablesUsageStatistic)
 
 
 
