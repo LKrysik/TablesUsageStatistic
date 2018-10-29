@@ -3,7 +3,8 @@
 
 [![Github Releases](https://img.shields.io/github/downloads/LKrysik/TablesUsageStatistic/latest/total.svg)](https://github.com/LKrysik/TablesUsageStatistic/releases/latest) [![GitHub release](https://img.shields.io/github/release/LKrysik/TablesUsageStatistic.svg)](https://github.com/LKrysik/TablesUsageStatistic/releases) [![Build status](https://tablesusagestatistic.visualstudio.com/TablesUsageStatistic/_apis/build/status/TablesUsageStatistic.svg)](https://tablesusagestatistic.visualstudio.com/TablesUsageStatistic/_apis/build/status/TablesUsageStatistic)
 
-[Build status](https://tablesusagestatistic.visualstudio.com/TablesUsageStatistic/_apis/build/status/TablesUsageStatistic)
+ [![Build status](https://tablesusagestatistic.visualstudio.com/TablesUsageStatistic/_apis/build/status/TablesUsageStatistic)]
+
 
 
 T-SQL Tables Usage Statistic - analyzes trace profiler data or any t-sql queries to find out which tables are in use. 
